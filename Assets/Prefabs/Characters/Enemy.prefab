@@ -109,9 +109,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cced329d68de6cf4893dba097a520db6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  enemyHp: 0
+  speed: 2
+  enemyHp: 3
   player: {fileID: 0}
+  target: {fileID: 0}
+  ground:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &6145419912361969712
 GameObject:
   m_ObjectHideFlags: 0

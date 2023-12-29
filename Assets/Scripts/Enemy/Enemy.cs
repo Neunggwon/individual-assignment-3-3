@@ -6,11 +6,13 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float speed = 3.0f;
+    public float speed = 2.0f;
     public float enemyHp;
 
     public GameObject player;
     public Rigidbody2D target;
+
+    public LayerMask ground;
 
     Rigidbody2D rigid;
     SpriteRenderer sprite;
@@ -32,8 +34,9 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+        //Jump();
 
-        if(sprite.flipX)
+        if (sprite.flipX)
         {
             Debug.DrawRay(rigid.position, Vector3.left, new Color(0, 0, 0));
         }
@@ -50,26 +53,53 @@ public class Enemy : MonoBehaviour
 
     private void Move()
     {
-        rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y);
-        target.velocity = new Vector2(target.velocity.x, target.velocity.y);
-        Vector2 dirVec = target.position - rigid.position;
-        Vector2 nextVec = dirVec.normalized * speed;
-        //Vector2 diraction = rigid.position + nextVec;
-        //Vector2 targetdiraction = new Vector2(diraction.x, rigid.position.y);
-        float dirVecX = rigid.position.x + nextVec.x;
-        Vector2 targetdiraction = new Vector2(dirVec.x, rigid.position.y);
-        //rigid.MovePosition(targetdiraction);
-        rigid.AddForce(targetdiraction);
+        if (sprite.flipX)
+        {
+            rigid.velocity = new Vector2(Vector2.left.x * speed, rigid.velocity.y);
+        }
+        else
+        {
+            rigid.velocity = new Vector2(Vector2.right.x * speed, rigid.velocity.y);
+        }
     }
 
     public bool GroundCheck()
     {
-        return false;
-        //보는 방향에 레이저를 발사 
+        if (Physics2D.Raycast(transform.position, Vector3.down, 1, ground))
+        {
+            //보는 방향에 레이저를 발사 
+            if (sprite.flipX)
+            {
+                if (Physics2D.Raycast(transform.position, Vector3.left, 1, ground))
+                {
+                    //Debug.Log(GroundCheck());
+                    return true;
+                }
+                return false;
+            }
+            else
+            {
+                if (Physics2D.Raycast(transform.position, Vector3.right, 1, ground))
+                {
+                    //Debug.Log(GroundCheck());
+                    return true;
+                }
+                return false;
+            }
+        }
+        else
+        {
+            //Debug.Log(GroundCheck());
+            return false;
+        }
     }
     private void Jump()
     {
-        //레이저가 Ground 있으면 점프를 하도록 구현해보자 .. - PlayerMovement 참조하자..
+        if (GroundCheck())
+        {
+            Debug.Log("Enemy Jump");
+            rigid.velocity = new Vector2(rigid.velocity.x, Vector2.up.y * speed);
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)

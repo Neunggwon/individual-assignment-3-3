@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class ObjectPoolManager : MonoBehaviour
 {
-    public GameObject prefabs;
+    public GameObject[] prefabs;
 
     public int initialPoolSize;
     public int maxPoolSize;
 
-    private List<GameObject> objectPool1;
+    public List<GameObject> objectPool1;
 
     void Start()
     {
-        //Enemy A
         objectPool1 = new List<GameObject>();
         for (int i = 0; i < initialPoolSize; i++)
         {
-            GameObject obj = Instantiate(prefabs, transform);
+            GameObject obj = Instantiate(prefabs[0], transform);
             obj.SetActive(false);
             objectPool1.Add(obj);
         }
@@ -35,7 +34,7 @@ public class ObjectPoolManager : MonoBehaviour
         }
         if (objectPool1.Count < maxPoolSize)
         {
-            GameObject obj = Instantiate(prefabs, transform);
+            GameObject obj = Instantiate(prefabs[0], transform);
             objectPool1.Add(obj);
             obj.SetActive(true);
             return obj;
@@ -48,7 +47,7 @@ public class ObjectPoolManager : MonoBehaviour
 
     public void ReturnObjectToPool()
     {
-        GameObject obj = Instantiate(prefabs, transform);
+        GameObject obj = Instantiate(prefabs[0], transform);
         obj.SetActive(false);
     }
 }

@@ -1,0 +1,51 @@
+{
+    "name": "SideViewPlayerInputAction",
+    "maps": [
+        {
+            "name": "PlayerController",
+            "id": "2a0de8b9-4c10-4e7e-94a2-be231df7abe2",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Value",
+                    "id": "ea9b3b4c-2713-4739-b37a-c4073489beb1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b8ad61b1-06fd-4cb2-98f1-bf853a6ff239",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PlayerController",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "PlayerController",
+            "bindingGroup": "PlayerController",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

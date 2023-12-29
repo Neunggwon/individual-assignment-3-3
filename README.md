@@ -6,8 +6,12 @@
 - 장르 : 2D Side View 로그라이크
 
 - 플레이어 : 이동, 점프 구현
+
   이동 : Up,Dwon,Left,Right/W,A,S,D
+
   점프 : C/Space bar
+
   공격 : Z/Mouse Left
     -공격 할 때 인식을 못함
+
 - 적 : 플레이어를 따라 가도록 구현
